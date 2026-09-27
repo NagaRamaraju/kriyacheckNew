@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:KriyaTracker.Application.ViewModels;assembly=KriyaTracker.Application"
+             x:Class="KriyaTracker.UI.SessionPage"
+             x:DataType="viewmodels:SessionViewModel"
+             Title="Practice">
+             
+    <VerticalStackLayout Padding="20" Spacing="30" VerticalOptions="Center">
+        <Label Text="Live Practice" Style="{StaticResource Headline}" HorizontalOptions="Center" />
+
+        <Frame BackgroundColor="{StaticResource Primary}" HeightRequest="200" WidthRequest="200" CornerRadius="100" HorizontalOptions="Center">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Label Text="{Binding CurrentPhase}" TextColor="White" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                <Label Text="{Binding CurrentKriyaCount, StringFormat='{0} Kriyas'}" TextColor="White" FontSize="16" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Start" Command="{Binding StartSessionCommand}" />
+            <Button Text="End &amp; Save" Command="{Binding EndSessionCommand}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

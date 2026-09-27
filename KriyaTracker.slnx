@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="KriyaTracker.Application/KriyaTracker.Application.csproj" />
+  <Project Path="KriyaTracker.Domain/KriyaTracker.Domain.csproj" />
+  <Project Path="KriyaTracker.Infrastructure/KriyaTracker.Infrastructure.csproj" />
+  <Project Path="KriyaTracker.UI/KriyaTracker.UI.csproj" />
+  <Project Path="KriyaTracker.WearOS/KriyaTracker.WearOS.csproj" />
+</Solution>

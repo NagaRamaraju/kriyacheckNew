@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:KriyaTracker.Application.ViewModels;assembly=KriyaTracker.Application"
+             xmlns:models="clr-namespace:KriyaTracker.Domain.Entities;assembly=KriyaTracker.Domain"
+             x:Class="KriyaTracker.UI.MainPage"
+             x:DataType="viewmodels:DashboardViewModel"
+             Title="Dashboard">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Namaste 🙏" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
+            
+            <Frame BackgroundColor="{StaticResource Primary}" Padding="20" CornerRadius="10" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Today's Practice" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <HorizontalStackLayout Spacing="20">
+                        <VerticalStackLayout>
+                            <Label Text="Kriyas" TextColor="LightGray" FontSize="12" />
+                            <Label Text="{Binding TodayTotalKriyas}" TextColor="White" FontSize="24" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Time (min)" TextColor="LightGray" FontSize="12" />
+                            <Label Text="{Binding TodayPracticeTime}" TextColor="White" FontSize="24" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="Recent Sessions" Style="{StaticResource SubHeadline}" Margin="0,10,0,0" />
+
+            <CollectionView ItemsSource="{Binding RecentSessions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MeditationSession">
+                        <Frame Margin="0,5" Padding="15" CornerRadius="8">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <VerticalStackLayout Grid.Column="0">
+                                    <Label Text="{Binding StartTime, StringFormat='{0:MMM dd, yyyy HH:mm}'}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Notes}" FontSize="12" TextColor="Gray" />
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1" Text="{Binding TotalKriyas, StringFormat='{0} Kriyas'}" VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Refresh Data" Command="{Binding LoadDashboardDataCommand}" Margin="0,20,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
